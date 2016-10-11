@@ -21,7 +21,14 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'numero') ?>
 
-    <?= $form->field($model, 'fecha_publicacion') ?>
+    <?php echo $form->field($model,'fecha_publicacion')->widget(DatePicker::className() , 
+        [
+            'model' => $model,
+            'attribute' => 'fecha_publicacion',
+            'language' => 'es',
+            'dateFormat' => 'yyyy-MM-dd',
+        ]);
+    ?>?>
 
     <?= $form->field($model, 'ruta') ?>
 

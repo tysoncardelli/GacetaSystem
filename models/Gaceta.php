@@ -50,7 +50,7 @@ class Gaceta extends \yii\db\ActiveRecord
             'id' => 'ID',
             'asunto' => 'Asunto',
             'numero' => 'Numero',
-            'fecha_publicacion' => 'Fecha Publicacion',
+            'fecha_publicacion' => 'Fecha Publicación',
             'ruta' => 'Ruta',
         ];
     }

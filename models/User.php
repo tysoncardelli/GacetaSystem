@@ -8,8 +8,10 @@ use Yii;
  * This is the model class for table "user".
  *
  * @property integer $id
- * @property string $usuario
- * @property string $contra
+ * @property string $nombre
+ * @property string $login
+ * @property string $password
+ * @property string $fecha_caducidad
  *
  * @property Bitacora[] $bitacoras
  */
@@ -29,9 +31,11 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['usuario', 'contra'], 'required'],
-            [['usuario', 'contra'], 'string', 'max' => 45],
-            [['usuario'], 'unique'],
+            [['nombre', 'login', 'password', 'fecha_caducidad'], 'required'],
+            [['fecha_caducidad'], 'safe'],
+            [['nombre'], 'string', 'max' => 150],
+            [['login', 'password'], 'string', 'max' => 45],
+            [['login'], 'unique'],
         ];
     }
 
@@ -42,8 +46,10 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'usuario' => 'Usuario',
-            'contra' => 'Contra',
+            'nombre' => 'Nombre',
+            'login' => 'Login',
+            'password' => 'Password',
+            'fecha_caducidad' => 'Fecha Caducidad',
         ];
     }
 

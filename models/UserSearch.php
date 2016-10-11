@@ -19,7 +19,7 @@ class UserSearch extends User
     {
         return [
             [['id'], 'integer'],
-            [['usuario', 'contra'], 'safe'],
+            [['nombre', 'login', 'password', 'fecha_caducidad'], 'safe'],
         ];
     }
 
@@ -60,10 +60,12 @@ class UserSearch extends User
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'fecha_caducidad' => $this->fecha_caducidad,
         ]);
 
-        $query->andFilterWhere(['like', 'usuario', $this->usuario])
-            ->andFilterWhere(['like', 'contra', $this->contra]);
+        $query->andFilterWhere(['like', 'nombre', $this->nombre])
+            ->andFilterWhere(['like', 'login', $this->login])
+            ->andFilterWhere(['like', 'password', $this->password]);
 
         return $dataProvider;
     }
