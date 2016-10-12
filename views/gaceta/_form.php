@@ -11,7 +11,7 @@ use yii\jui\DatePicker;
 
 <div class="gaceta-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options'=>['enctype'=>'multipart/form-data']]); ?>
 
     <?= $form->field($model, 'asunto')->textInput(['maxlength' => true]) ?>
 
@@ -29,7 +29,8 @@ use yii\jui\DatePicker;
         echo "<label></label><br><br>";
     ?>
 
-    <?= $form->field($model, 'ruta')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model,'file')->fileInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

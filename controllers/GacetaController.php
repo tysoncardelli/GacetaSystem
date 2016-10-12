@@ -8,6 +8,7 @@ use app\models\GacetaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * GacetaController implements the CRUD actions for Gaceta model.
@@ -65,7 +66,17 @@ class GacetaController extends Controller
     {
         $model = new Gaceta();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) ) {
+
+            //get the instance of the uploaded file
+            $filename= $model->numero;
+            $model->file= UploadedFile::getinstance($model,'file');
+            $model->file->saveAs('uploads/'.$filename.'.'.$model->file->extension );
+            //save the path in the db column
+            $model->ruta='uploads/'.$filename.'.'.$model->file->extension;
+
+             $model->save();
+             
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

@@ -21,6 +21,9 @@ class Gaceta extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
+    public $file;
+
     public static function tableName()
     {
         return 'gaceta';
@@ -37,6 +40,7 @@ class Gaceta extends \yii\db\ActiveRecord
             [['asunto'], 'string', 'max' => 100],
             [['numero'], 'string', 'max' => 45],
             [['ruta'], 'string', 'max' => 150],
+            [['file'],'file'],
             [['numero'], 'unique'],
         ];
     }
@@ -52,6 +56,7 @@ class Gaceta extends \yii\db\ActiveRecord
             'numero' => 'Número',
             'fecha_publicacion' => 'Fecha Publicación',
             'ruta' => 'Ruta',
+            'file'=>'Archivo',
         ];
     }
 
