@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use kartik\daterange\DateRangePicker;
+use jino5577\daterangepicker\DateRangePicker; 
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\GacetaSearch */
@@ -23,28 +23,22 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'asunto',
+            ['class' => 'yii\grid\SerialColumn'],                        
             'numero',
+            'asunto',
             [
-                'attribute' => 'fecha_publicacion',
-                'value' => 'fecha',
-                'format'=>'raw',
-                'options' => ['style' => 'width: 25%;'],
+                // the attribute
+                'attribute' => 'fecha_publicacion',                
+                // here we render the widget
                 'filter' => DateRangePicker::widget([
-                'model' => $searchModel,
-                'attribute' => 'fecha_publicacion',
-                'useWithAddon'=>false,
-                'convertFormat'=>true,
-                'pluginOptions'=>[
-                    'locale'=>['format'=>'Y-m-d']
-                ],
+                    'model' => $searchModel,
+                    'attribute' => 'created_at_range',
+                    'pluginOptions' => [
+                    'format' => 'Y-m-d',
+                    'autoUpdateInput' => false
+                ]
                 ])
-            ],
-            'ruta',
-
+            ],            
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

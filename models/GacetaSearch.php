@@ -12,6 +12,9 @@ use app\models\Gaceta;
  */
 class GacetaSearch extends Gaceta
 {
+
+    public $created_at_range; 
+
     /**
      * @inheritdoc
      */
@@ -19,7 +22,7 @@ class GacetaSearch extends Gaceta
     {
         return [
             [['id'], 'integer'],
-            [['asunto', 'numero', 'fecha_publicacion', 'ruta'], 'safe'],
+            [['asunto', 'numero', 'fecha_publicacion', 'ruta', 'created_at_range'], 'safe'],
         ];
     }
 
@@ -58,10 +61,17 @@ class GacetaSearch extends Gaceta
         }
 
         // grid filtering conditions
-        $query->andFilterWhere([
+        /*$query->andFilterWhere([
             'id' => $this->id,
             'fecha_publicacion' => $this->fecha_publicacion,
-        ]);
+        ]);*/
+
+        if(!empty($this->created_at_range) && strpos($this->created_at_range, '-') !== false) {
+            list($start_date, $end_date) = explode(' - ', $this->created_at_range);
+            $dateStart = date_create($start_date);
+            $dateEnd = date_create($end_date);
+            $query->andFilterWhere(['between', 'gaceta.fecha_publicacion', date_format($dateStart, 'Y-m-d'), date_format($dateEnd, 'Y-m-d')]);
+        }
 
         $query->andFilterWhere(['like', 'asunto', $this->asunto])
             ->andFilterWhere(['like', 'numero', $this->numero])

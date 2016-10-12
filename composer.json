@@ -20,7 +20,9 @@
         "yiisoft/yii2-swiftmailer": "*",
         "yiisoft/yii2-jui": "*",
         "kartik-v/yii2-widget-fileinput": "*",
-        "kartik-v/yii2-date-range": "dev-master"
+        "kartik-v/yii2-date-range": "dev-master",
+        "2amigos/yii2-date-picker-widget": "~1.0",
+        "jino5577/yii2-date-range-picker": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

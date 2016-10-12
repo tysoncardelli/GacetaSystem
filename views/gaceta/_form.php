@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\jui\DatePicker;
-use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Gaceta */
@@ -18,17 +17,17 @@ use kartik\file\FileInput;
 
     <?= $form->field($model, 'numero')->textInput(['maxlength' => true]) ?>
 
-    <?php
+    <?php 
         echo '<label>Fecha de Publicación</label><br>'; 
         echo DatePicker::widget([ 
-    		'model' => $model,
-    		'attribute' => 'fecha_publicacion',
-    		'language' => 'es',
-    		'dateFormat' => 'yyyy-MM-dd',
-		]);
-
-        echo "<label></label><br><br>";        
-	?>
+            'model' => $model,
+            'attribute' => 'fecha_publicacion',
+            'language' => 'es',
+            'dateFormat' => 'yyyy-MM-dd',
+        ]);
+        
+        echo "<label></label><br><br>";
+    ?>
 
     <?= $form->field($model, 'ruta')->textInput(['maxlength' => true]) ?>
 
