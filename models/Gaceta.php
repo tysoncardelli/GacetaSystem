@@ -49,7 +49,7 @@ class Gaceta extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'asunto' => 'Asunto',
-            'numero' => 'Numero',
+            'numero' => 'Número',
             'fecha_publicacion' => 'Fecha Publicación',
             'ruta' => 'Ruta',
         ];

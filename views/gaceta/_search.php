@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\jui\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\GacetaSearch */
@@ -29,10 +30,10 @@ use yii\widgets\ActiveForm;
             'language' => 'es',
             'dateFormat' => 'yyyy-MM-dd',
         ]);
-
+        
         echo "<label></label><br><br>";
     ?>
-    
+
     <?= $form->field($model, 'ruta') ?>
 
     <div class="form-group">

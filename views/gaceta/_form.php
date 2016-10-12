@@ -27,7 +27,7 @@ use kartik\file\FileInput;
     		'dateFormat' => 'yyyy-MM-dd',
 		]);
 
-        echo "<label></label><br><br>";
+        echo "<label></label><br><br>";        
 	?>
 
     <?= $form->field($model, 'ruta')->textInput(['maxlength' => true]) ?>
