@@ -39,7 +39,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
                 ])
             ],            
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+            'class' => 'yii\grid\ActionColumn',
+            'template'=>'{view} {update} {delete} {download}',
+            'buttons'=>[
+                'download'=>function($url,$model,$key){
+                    return $model->ruta !='' ? Html::a(
+                    '<span class="glyphicon glyphicon-file"</span>',
+                     $model->ruta): $model->ruta;
+                },
+            ],
+            ],
         ],
     ]); ?>
 </div>
