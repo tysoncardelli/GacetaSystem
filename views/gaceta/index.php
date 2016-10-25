@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'download'=>function($url,$model,$key){
                     return $model->ruta !='' ? Html::a(
                     '<span class="glyphicon glyphicon-file"</span>',
-                     $model->ruta): $model->ruta;
+                     '/'.$model->ruta): '';
                 },
             ],
             ],
