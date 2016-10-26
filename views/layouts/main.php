@@ -26,19 +26,18 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
+    
     NavBar::begin([
-        'brandLabel' => 'Gobernación del Estado Táchira',
+        'brandLabel' => "<img src='". Yii::$app->request->baseUrl ."/gobernacion.png' style='margin-top: -20px;' class='img-responsive'>",        
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse  navbar-fixed-top',
+            'class' => 'navbar-inverse  navbar-fixed-top',            
         ],
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/gaceta/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => 'Home', 'url' => ['index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
