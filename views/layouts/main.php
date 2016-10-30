@@ -45,8 +45,6 @@ $_SESSION['log']=0;
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
            
-          Yii::$app->user->isGuest ?  (
-
             ['label' => 'Home', 'url' => ['index']],
             Yii::$app->user->isGuest ? (
 
