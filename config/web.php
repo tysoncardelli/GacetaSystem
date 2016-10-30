@@ -17,8 +17,9 @@ $config = [
         ],
 
         'user' => [
-            'identityClass' => 'app\models\User',
-            'enableAutoLogin' => true,
+        'identityClass' => 'app\models\BackendUser',
+        'enableAutoLogin' => true,//If you don't have authKey column in your DB, set enableAutoLogin field to false
+        'enableSession' => true,
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

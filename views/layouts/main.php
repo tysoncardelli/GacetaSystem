@@ -11,6 +11,9 @@ use app\assets\AppAsset;
 
 AppAsset::register($this);
 ?>
+<?php 
+$_SESSION['log']=0;
+ ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -39,7 +42,20 @@ AppAsset::register($this);
             ['label' => 'Home', 'url' => ['/gaceta/index']],
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
+           
+            /* if($_SESSION['log']=="1"){
+                 '<li>'
+                . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link']
+
+             }
+             else{
+
+                 ['label' => 'Login', 'url' => ['/site/login']]
+             }*/
+          Yii::$app->user->isGuest ?  (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
                 '<li>'
