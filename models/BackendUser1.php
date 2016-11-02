@@ -13,7 +13,7 @@ use Yii;
  * @property string $username
  * @property string $password
  * @property string $fecha_caducidad
- * @property integer $Rol
+ * @property integer $rol
  */
 class BackendUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
@@ -31,11 +31,10 @@ class BackendUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInter
     public function rules()
     {
         return [
-            [['nombre', 'apellido', 'username', 'password', 'fecha_caducidad', 'Rol'], 'required'],
-            [['fecha_caducidad'], 'safe'],
-            [['Rol'], 'integer'],
+            [['nombre', 'apellido', 'username', 'password', 'fecha_caducidad','rol'], 'required'],
             [['nombre'], 'string', 'max' => 150],
             [['apellido', 'username', 'password'], 'string', 'max' => 45],
+         
         ];
     }
 
@@ -46,16 +45,16 @@ class BackendUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInter
     {
         return [
             'id' => 'ID',
-            'nombre' => 'Nombre',
-            'apellido' => 'Apellido',
+            'nombre' => 'First Name',
+            'apellido' => 'Last Name',
             'username' => 'Username',
             'password' => 'Password',
             'fecha_caducidad' => 'Fecha Caducidad',
-            'Rol' => 'Rol',
+            'rol' => 'Rol',
         ];
     }
 
-     public function getAuthKey()
+    public function getAuthKey()
     {
          //  throw new \yii\base\NotSupportedException();       
            return $this->id;
