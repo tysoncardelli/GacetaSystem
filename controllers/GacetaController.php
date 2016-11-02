@@ -58,6 +58,7 @@ class GacetaController extends Controller
         ]);
     }
 
+
     /**
      * Creates a new Gaceta model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -70,15 +71,25 @@ class GacetaController extends Controller
         if ($model->load(Yii::$app->request->post()) ) {
 
             //get the instance of the uploaded file
-            $filename= $model->numero;
+            $filename = $model->numero;
             $model->file= UploadedFile::getinstance($model,'file');
             $model->file->saveAs('uploads/'.$filename.'.'.$model->file->extension );
             //save the path in the db column
             $model->ruta='uploads/'.$filename.'.'.$model->file->extension;
 
-            $model->save();
+            //$model->save();
 
-            return $this->redirect(['view', 'id' => $model->id]);
+            if($model->save()){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            else{
+                return $this->render('create', [
+                  'model' => $model,
+                ]);
+                exit;
+            }
+
+            
         } else {
             return $this->render('create', [
                 'model' => $model,

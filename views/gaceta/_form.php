@@ -9,7 +9,7 @@ use yii\jui\DatePicker;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="gaceta-form">
+<div class="gaceta-form">    
 
     <?php $form = ActiveForm::begin(['options'=>['enctype'=>'multipart/form-data']]); ?>
 
@@ -27,6 +27,8 @@ use yii\jui\DatePicker;
         ]);
         
         echo "<label></label><br><br>";
+
+        
     ?>
 
 
