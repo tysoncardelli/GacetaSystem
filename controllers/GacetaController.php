@@ -71,11 +71,9 @@ class GacetaController extends Controller
         if ($model->load(Yii::$app->request->post()) ) {
 
             //get the instance of the uploaded file
-<<<<<<< HEAD
-            $filename = $model->numero;
-=======
+
             $filename= $model->numero.'_'.$model->fecha_publicacion;
->>>>>>> 7b3fe3c3235eb8ebe30b6a2b716a673dcb67d0f8
+
             $model->file= UploadedFile::getinstance($model,'file');
             $model->file->saveAs('uploads/'.$filename.'.'.$model->file->extension );
             //save the path in the db column
