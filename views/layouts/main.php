@@ -101,11 +101,11 @@ $_SESSION['log']=0;
     </div>
 </div>
 
-<footer class="footer">
+<footer class="footer" style = "background-color: #7589A2">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <center>
+            <img src="<?= Yii::$app->request->baseUrl . "/logo_base.png" ?>" style="margin-top: -18px"></img>
+        </center>
     </div>
 </footer>
 
