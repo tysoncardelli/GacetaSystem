@@ -55,8 +55,8 @@ $_SESSION['log']=0;
                     '<li>'
                     . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
                     . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'btn btn-link']
+                        'Salir (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'mover btn btn-link navbar-inverse']
                     )
                     . Html::endForm()
                     . '</li>'
@@ -79,8 +79,8 @@ $_SESSION['log']=0;
                     '<li>'
                     . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
                     . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'btn btn-link']
+                        'Salir (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'mover btn btn-link navbar-inverse',]
                     )
                     . Html::endForm()
                     . '</li>'
@@ -94,6 +94,7 @@ $_SESSION['log']=0;
     ?>
 
     <div class="container">
+    <?php echo "<br><br>"; ?>
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
