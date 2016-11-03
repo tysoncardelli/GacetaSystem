@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use yii\helpers\Html;
+use app\models\Bitacora;
 
 /**
  * GacetaController implements the CRUD actions for Gaceta model.
@@ -67,6 +68,7 @@ class GacetaController extends Controller
     public function actionCreate()
     {
         $model = new Gaceta();
+        $bitacora= new Bitacora();  
 
         if(Yii::$app->session->get('rol') !== null){
         if ($model->load(Yii::$app->request->post()) ) {
@@ -81,9 +83,33 @@ class GacetaController extends Controller
             $model->ruta='uploads/'.$filename.'.'.$model->file->extension;
 
             //$model->save();
+            
+             //$bitacora->gaceta_id=$model->numero;
+             //$bitacora->user_id=Yii::$app->session->get('id');
+             //$biacora->fecha_registro=new CDbExpression('NOW()');
+            // $bitacora->save();
+
 
             if($model->save()){
-                return $this->redirect(['view', 'id' => $model->id]);
+              //guardando en bitacora
+               //$bitacora->gaceta_id= $model->numero;
+               //$bitacora->user_id=Yii::$app->session->get('id');
+               //$bitacora->fecha_registro=new \yii\db\Expression('NOW()'); 
+               
+               // echo " id de gaceta ".$bitacora->gaceta_id;
+               // echo "usuario ".$bitacora->user_id;
+                //echo "fecha de registro ".$bitacora->fecha_registro;
+
+               //if($bitacora->save()){
+
+               //}
+               //else{
+               // echo "no guardo";
+               // echo $bitacora->getError();
+               //}
+                  
+              
+              return $this->redirect(['view', 'id' => $model->id]);
             }
             else{
                 return $this->render('create', [

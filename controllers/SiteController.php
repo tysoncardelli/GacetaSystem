@@ -81,6 +81,7 @@ class SiteController extends Controller
             
             $usuario=$model->getUser();            
             Yii::$app->session->set('rol', $usuario->Rol);
+            Yii::$app->session->set('id',$usuario->id);
 
              return $this->redirect('/gaceta/index',302);
           // return $this->goBack();

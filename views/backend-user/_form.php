@@ -37,7 +37,10 @@ use yii\jui\DatePicker;
         
     ?>
 
-    <?= $form->field($model, 'Rol')->textInput() ?>
+    <?php 
+    $a=['0'=>'Super Administrador','1'=>'Administrador'];
+    echo $form->field($model,'Rol')->dropDownList($a,['prompt'=>'Seleccione']);
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Registrar' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
