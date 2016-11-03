@@ -73,7 +73,7 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
+           return $this->goHome();
         }
 
         $model = new LoginForm();
@@ -83,11 +83,34 @@ class SiteController extends Controller
             Yii::$app->session->set('rol', $usuario->Rol);
             Yii::$app->session->set('id',$usuario->id);
 
-             return $this->redirect('/gaceta/index',302);
+            $fecha_actual = strtotime(date("d-m-Y H:i:00",time()));
+            $fecha_entrada = strtotime($usuario->fecha_caducidad);
+            echo $fecha_actual;
+            echo $fecha_entrada;
+            if($fecha_actual > $fecha_entrada){
+
+                        $mensaje="mensaje";
+                   
+                         Yii::$app->session->set('error',$mensaje);
+                        $msj=Yii::$app->session->get('error');
+    
+                         echo $msj;
+
+                          //$model->addError($pass, 'Incorrect username or password.');
+                    Yii::$app->user->logout();
+
+                    return $this->redirect('/site/login',302);
+
+            } else{
+                     return $this->redirect('/gaceta/index',302);
+
+            }
+
+            
           // return $this->goBack();
         }
-        return $this->render('login', [
-            'model' => $model,
+     return $this->render('login', [
+           'model' => $model,
         ]);
     }
 

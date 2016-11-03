@@ -92,21 +92,27 @@ class GacetaController extends Controller
 
             if($model->save()){
               //guardando en bitacora
-               //$bitacora->gaceta_id= $model->numero;
-               //$bitacora->user_id=Yii::$app->session->get('id');
-               //$bitacora->fecha_registro=new \yii\db\Expression('NOW()'); 
-               
-               // echo " id de gaceta ".$bitacora->gaceta_id;
-               // echo "usuario ".$bitacora->user_id;
-                //echo "fecha de registro ".$bitacora->fecha_registro;
+             //  $gaceta_id=Gaceta::$model->findOne();
+               $bitacora->gaceta_id= $model->id;
+               $bitacora->user_id=Yii::$app->session->get('id');
+               $bitacora->fecha_registro=new \yii\db\Expression('NOW()'); 
+               //$idg= Gaceta::findOne(['numero'=>$model->numero]);
+               $idg = Gaceta::find()->orderBy('id DESC')->one();
+               //echo $idg->id; 
+               //echo "   id de gaceta consultado ";
 
-               //if($bitacora->save()){
+               //echo " id de gaceta model".$model->id;
+                //echo " id de gaceta ".$bitacora->gaceta_id;
+                //echo "usuario ".$bitacora->user_id;
+               // echo "fecha de registro ".$bitacora->fecha_registro;
 
-               //}
-               //else{
-               // echo "no guardo";
+               if($bitacora->save()){
+                echo "guardo";
+               }
+               else{
+                print_r($bitacora->errors) ;
                // echo $bitacora->getError();
-               //}
+               }
                   
               
               return $this->redirect(['view', 'id' => $model->id]);
