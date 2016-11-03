@@ -24,6 +24,7 @@ use yii\jui\DatePicker;
             'attribute' => 'fecha_publicacion',
             'language' => 'es',
             'dateFormat' => 'yyyy-MM-dd',
+            'options' => ['class' => 'form-control']
         ]);
         
         echo "<label></label><br><br>";

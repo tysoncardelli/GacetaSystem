@@ -29,9 +29,10 @@ use yii\jui\DatePicker;
             'attribute' => 'fecha_caducidad',
             'language' => 'es',
             'dateFormat' => 'yyyy-MM-dd',
+            'options' => ['class' => 'form-control']
         ]);
         
-        echo "<label></label><br><br>";
+        echo "<label></label><br>";
 
         
     ?>
