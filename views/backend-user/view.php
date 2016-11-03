@@ -6,17 +6,27 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\BackendUser */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Backend Users', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
+
 ?>
 <div class="backend-user-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <?php 
+        $session = Yii::$app->session->get('rol');                   
+        
+        if($session == 1){                   
+           Yii::$app->response->redirect(["/gaceta/index"]);
+        }
+
+        if(Yii::$app->session->get('rol') === null){
+            Yii::$app->response->redirect(["/gaceta/index"]);
+        }
+    ?>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Eliminar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -27,12 +37,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= DetailView::widget([
         'model' => $model,
-        'attributes' => [
-            'id',
+        'attributes' => [            
             'nombre',
             'apellido',
-            'username',
-            'password',
+            'username',            
             'fecha_caducidad',
             'Rol',
         ],

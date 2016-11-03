@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\jui\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\BackendUser */
@@ -20,12 +21,25 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'fecha_caducidad')->textInput() ?>
+    <?php //$form->field($model, 'fecha_caducidad')->textInput() ?>
+    <?php 
+        echo '<label>Fecha de Caducidad</label><br>'; 
+        echo DatePicker::widget([ 
+            'model' => $model,
+            'attribute' => 'fecha_caducidad',
+            'language' => 'es',
+            'dateFormat' => 'yyyy-MM-dd',
+        ]);
+        
+        echo "<label></label><br><br>";
+
+        
+    ?>
 
     <?= $form->field($model, 'Rol')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Registrar' : 'Actualizar', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

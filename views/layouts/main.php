@@ -37,30 +37,59 @@ $_SESSION['log']=0;
             'class' => 'navbar-inverse  navbar-fixed-top',            
         ],
     ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
+        $session = Yii::$app->session->get('rol');                   
+        
+        if($session === 0){                   
+           echo Nav::widget([
+                'options' => ['class' => 'navbar-nav navbar-right'],
+                'items' => [
 
-            ['label' => 'Home', 'url' => ['/gaceta/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-           
-            ['label' => 'Home', 'url' => ['index']],
-            Yii::$app->user->isGuest ? (
+                ['label' => 'Gacetas', 'url' => ['/gaceta/index']],
+                
+                ['label' => 'Usuarios', 'url' => ['/backend-user/index']],
 
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link']
+                Yii::$app->user->isGuest ? (
+
+                    ['label' => 'Login', 'url' => ['/site/login']]
+                ) : (
+                    '<li>'
+                    . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
+                    . Html::submitButton(
+                        'Logout (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'btn btn-link']
+                    )
+                    . Html::endForm()
+                    . '</li>'
                 )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
+                ],
+            ]);
+        }
+
+        if($session === 1 || Yii::$app->session->get('rol') === null){
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav navbar-right'],
+                'items' => [
+
+                ['label' => 'Gacetas', 'url' => ['/gaceta/index']],                        
+
+                Yii::$app->user->isGuest ? (
+
+                    ['label' => 'Login', 'url' => ['/site/login']]
+                ) : (
+                    '<li>'
+                    . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
+                    . Html::submitButton(
+                        'Logout (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'btn btn-link']
+                    )
+                    . Html::endForm()
+                    . '</li>'
+                )
+                ],
+            ]);
+        }
+        
+
     NavBar::end();
     ?>
 

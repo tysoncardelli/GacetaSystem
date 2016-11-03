@@ -34,7 +34,8 @@ class BackendUserController extends Controller
      * @return mixed
      */
     public function actionIndex()
-    {
+    {           
+                
         $searchModel = new BackendUserSerch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -42,6 +43,8 @@ class BackendUserController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+            
+        
     }
 
     /**

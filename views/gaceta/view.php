@@ -6,33 +6,43 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Gaceta */
 
-$this->title = $model->id;
+$this->title = "Ver Gaceta";
 $this->params['breadcrumbs'][] = ['label' => 'Gacetas', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="gaceta-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?php 
+    if(Yii::$app->session->get('rol') !== null){
+    ?>
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Actualizar', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Eliminar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '¿Desea eliminar la gaceta?',
                 'method' => 'post',
             ],
         ]) ?>
     </p>
 
+    <?php 
+        }
+    ?>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            
             'asunto',
             'numero',
             'fecha_publicacion',
-            'ruta',
+            [
+                'attribute'=>'Archivo',
+                'format'=>'raw',
+                'value'=>Html::a('Ver Archivo', '/'.$model->ruta, ['class' => 'btn btn-success', 'target'=>'_blank']),
+            ]
         ],
     ]) ?>
 

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Gaceta */
 
-$this->title = 'Create Gaceta';
+$this->title = 'Registrar Gaceta';
 $this->params['breadcrumbs'][] = ['label' => 'Gacetas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

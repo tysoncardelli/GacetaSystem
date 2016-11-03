@@ -5,12 +5,23 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\BackendUser */
 
-$this->title = 'Update Backend User: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Backend Users', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = 'Actualizar Usuario';
+$this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
+$this->params['breadcrumbs'][] = 'Actualizar';
 ?>
 <div class="backend-user-update">
+
+	<?php 
+        $session = Yii::$app->session->get('rol');                   
+        
+        if($session == 1){                   
+           Yii::$app->response->redirect(["/gaceta/index"]);
+        }
+
+        if(Yii::$app->session->get('rol') === null){
+            Yii::$app->response->redirect(["/gaceta/index"]);
+        }
+    ?>
 
     <h1><?= Html::encode($this->title) ?></h1>
 

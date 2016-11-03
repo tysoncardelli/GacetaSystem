@@ -48,8 +48,8 @@ class BackendUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInter
             'id' => 'ID',
             'nombre' => 'Nombre',
             'apellido' => 'Apellido',
-            'username' => 'Username',
-            'password' => 'Password',
+            'username' => 'Usuario',
+            'password' => 'Contraseña',
             'fecha_caducidad' => 'Fecha Caducidad',
             'Rol' => 'Rol',
         ];
@@ -81,7 +81,10 @@ class BackendUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInter
     {
         return $this->id;
     }
-
+        public function getRol()
+    {
+        return $this->Rol;
+    }
     public static function findByUsername($username){
             return self::findOne(['username'=>$username]);
     }

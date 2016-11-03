@@ -16,40 +16,97 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Registrar Gaceta', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],                        
-            'numero',
-            'asunto',
-            [
-                // the attribute
-                'attribute' => 'fecha_publicacion',                
-                // here we render the widget
-                'filter' => DateRangePicker::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'created_at_range',
-                    'pluginOptions' => [
-                    'format' => 'Y-m-d',
-                    'autoUpdateInput' => false
-                ]
-                ])
-            ],            
-            [
-            'class' => 'yii\grid\ActionColumn',
-            'template'=>'{view} {update} {delete} {download}',
-            'buttons'=>[
-                'download'=>function($url,$model,$key){
-                    return $model->ruta !='' ? Html::a(
-                    '<span class="glyphicon glyphicon-file"</span>',
-                     '/'.$model->ruta): '';
-                },
-            ],
-            ],
-        ],
-    ]); ?>
+    <?php 
+    if(Yii::$app->session->get('rol') !== null){
+        ?>
+        <p>
+            <?= Html::a('Registrar Gaceta', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+
+    <?php
+        }
+    ?>
+
+    <?php
+        $rol = intval(Yii::$app->session->get('rol'));
+        
+        if(Yii::$app->session->get('rol') !== null && ($rol === 1 || $rol === 0)){   
+        ?>               
+             <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],                        
+                    'numero',
+                    'asunto',
+                    [                
+                        'attribute' => 'fecha_publicacion',                                
+                        'filter' => DateRangePicker::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'created_at_range',
+                            'pluginOptions' => [
+                                'format' => 'Y-m-d',
+                                'autoUpdateInput' => false
+                            ]
+                        ])
+                    ],            
+                    [
+                    'class' => 'yii\grid\ActionColumn',
+                    'template'=>'{view} {update} {delete} {download}',
+                        'buttons'=>[
+                            'download'=>function($url,$model,$key){
+                                return $model->ruta !='' ? Html::a(
+                                '<span class="glyphicon glyphicon-file"</span>',
+                                '/'.$model->ruta, ['target'=>'_blank']): '';
+                            },
+                        ],
+                    ],
+                ],
+            ]); 
+
+            ?>
+
+        <?php
+        }
+
+        if(Yii::$app->session->get('rol') === null){   
+        ?>               
+             <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],                        
+                    'numero',
+                    'asunto',
+                    [                
+                        'attribute' => 'fecha_publicacion',                                
+                        'filter' => DateRangePicker::widget([
+                            'model' => $searchModel,
+                            'attribute' => 'created_at_range',
+                            'pluginOptions' => [
+                                'format' => 'Y-m-d',
+                                'autoUpdateInput' => false
+                            ]
+                        ])
+                    ],            
+                    [
+                    'class' => 'yii\grid\ActionColumn',
+                    'template'=>'{view} {download}',
+                        'buttons'=>[
+                            'download'=>function($url,$model,$key){
+                                return $model->ruta !='' ? Html::a(
+                                '<span class="glyphicon glyphicon-file"</span>',
+                                '/'.$model->ruta, ['target'=>'_blank']): '';
+                            },
+                        ],
+                    ],
+                ],
+            ]); 
+
+            ?>
+
+        <?php
+        }
+
+     ?>
 </div>

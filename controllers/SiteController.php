@@ -1,5 +1,6 @@
 <?php
 
+
 namespace app\controllers;
 
 use Yii;
@@ -77,8 +78,10 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            $_SESSION['log']="1";
             
+            $usuario=$model->getUser();            
+            Yii::$app->session->set('rol', $usuario->Rol);
+
              return $this->redirect('/gaceta/index',302);
           // return $this->goBack();
         }

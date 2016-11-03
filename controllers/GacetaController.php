@@ -68,6 +68,7 @@ class GacetaController extends Controller
     {
         $model = new Gaceta();
 
+        if(Yii::$app->session->get('rol') !== null){
         if ($model->load(Yii::$app->request->post()) ) {
 
             //get the instance of the uploaded file
@@ -97,6 +98,10 @@ class GacetaController extends Controller
                 'model' => $model,
             ]);
         }
+      }
+      else{
+        $this->redirect(['index']);
+      }
     }
 
     /**
@@ -109,6 +114,7 @@ class GacetaController extends Controller
     {
         $model = $this->findModel($id);
 
+      if(Yii::$app->session->get('rol') !== null){
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -116,6 +122,11 @@ class GacetaController extends Controller
                 'model' => $model,
             ]);
         }
+
+      }
+      else{
+        $this->redirect(['index']);
+      }
     }
 
     /**
