@@ -168,9 +168,24 @@ class GacetaController extends Controller
      * @return mixed
      */
     public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
+    {         
+        $gaceta = new Gaceta();
+        $gaceta->id = $id;            
+        $gacetaData = Gaceta::find()->where(['id' => $gaceta->id])->one();        
+        $ruta = $gacetaData->ruta;
 
+        $bitacora = new Bitacora();
+        $bitacora->gaceta_id = $id;
+        $bitacoraData = Bitacora::find()->where(['gaceta_id' => $bitacora->gaceta_id])->one();        
+        Bitacora::find()->where(['id' => $bitacoraData->id])->one()->delete();
+  
+        $ruta = str_replace("/","\\",$ruta);
+        $imageLocation = Yii::$app->basePath . "\web\\" . $ruta;        
+        
+        $imageLocation = Yii::$app->request->baseUrl . $ruta;
+        unlink($imageLocation);
+
+        $this->findModel($id)->delete();
         return $this->redirect(['index']);
     }
 

@@ -31,7 +31,7 @@ $_SESSION['log']=0;
     <?php
     
     NavBar::begin([
-        'brandLabel' => "<img src='". Yii::$app->request->baseUrl ."/gobernacion.png' style='margin-top: -20px;' class='img-responsive'>",        
+        'brandLabel' => "<img src='". Yii::$app->request->baseUrl ."/gobernacion.png' style='margin-top: -20px; margin-left:-120px;' class='img-responsive'>",        
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse  navbar-fixed-top',            
