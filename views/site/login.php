@@ -18,6 +18,11 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <?php 
        $msj=Yii::$app->session->get('error');
+
+       if(isset($_COOKIE["mensaje"])){
+       echo "<p style='color:red;'>".$_COOKIE["mensaje"]."</p>";
+       setcookie("mensaje"," ");
+       }
     
                          ;
 ?>

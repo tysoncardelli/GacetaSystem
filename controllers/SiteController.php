@@ -90,7 +90,7 @@ class SiteController extends Controller
             if($fecha_actual > $fecha_entrada){
 
                         $mensaje="mensaje";
-                   
+                        setcookie("mensaje","Su cuenta ha expirado. Por favor colocarse en contacto con el administrador");
                          Yii::$app->session->set('error',$mensaje);
                         $msj=Yii::$app->session->get('error');
     
@@ -123,7 +123,8 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+       // return $this->goHome();
+        return $this->redirect('/gaceta/index',302);
     }
 
     /**
