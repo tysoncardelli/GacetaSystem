@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
         <?= Html::a('Eliminar', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => '¿Desea eliminar el usuario?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -41,8 +41,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Usuarios', 'url' => ['index']];
             'nombre',
             'apellido',
             'username',            
-            'fecha_caducidad',
-            'Rol',
+            'fecha_caducidad',            
         ],
     ]) ?>
 
