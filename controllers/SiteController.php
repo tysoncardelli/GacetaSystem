@@ -124,7 +124,7 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
        // return $this->goHome();
-        return $this->redirect('/gaceta/index',302);
+        return $this->redirect('/gaceta/index',302); 
     }
 
     /**
