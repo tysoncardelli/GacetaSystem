@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 namespace app\controllers;
 
@@ -59,7 +59,6 @@ class GacetaController extends Controller
         ]);
     }
 
-
     /**
      * Creates a new Gaceta model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -77,8 +76,11 @@ class GacetaController extends Controller
 
             $filename= $model->numero.'_'.$model->fecha_publicacion;
 
+            Yii::$app->controller->enableCsrfValidation = false;
+
             $model->file= UploadedFile::getinstance($model,'file');
             $model->file->saveAs('uploads/'.$filename.'.'.$model->file->extension );
+                          
             //save the path in the db column
             $model->ruta='uploads/'.$filename.'.'.$model->file->extension;
 
@@ -123,9 +125,9 @@ class GacetaController extends Controller
                 ]);
                 exit;
             }
-
-            
+          
         } else {
+          
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -134,6 +136,7 @@ class GacetaController extends Controller
       else{
         $this->redirect(['index']);
       }
+      
     }
 
     /**

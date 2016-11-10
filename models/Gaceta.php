@@ -38,7 +38,7 @@ class Gaceta extends \yii\db\ActiveRecord
             [['asunto', 'numero', 'fecha_publicacion', 'ruta'], 'required'],
             [['fecha_publicacion'], 'safe'],
             [['asunto'], 'string', 'max' => 100],
-            [['numero'], 'string', 'max' => 45],
+            [['numero'], 'integer'],
             [['ruta'], 'string', 'max' => 150],
             [['file'],'file'],
             [['numero'], 'unique'],
