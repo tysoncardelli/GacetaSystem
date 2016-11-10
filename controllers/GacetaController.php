@@ -72,6 +72,12 @@ class GacetaController extends Controller
         if(Yii::$app->session->get('rol') !== null){
         if ($model->load(Yii::$app->request->post()) ) {
 
+            $parts = explode('-', $model->fecha_publicacion);
+            echo $parts[0];            
+
+            if(intval($parts[0]) < 1950){
+              throw new \yii\web\NotFoundHttpException("Imposible registrar la gaceta, el rango de la fecha no es válido");              
+            }
             //get the instance of the uploaded file
 
             $filename= $model->numero.'_'.$model->fecha_publicacion;

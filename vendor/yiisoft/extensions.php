@@ -111,4 +111,13 @@ return array (
       '@jino5577/daterangepicker' => $vendorDir . '/jino5577/yii2-date-range-picker',
     ),
   ),
+  'yii2mod/yii2-sweet-alert' => 
+  array (
+    'name' => 'yii2mod/yii2-sweet-alert',
+    'version' => '1.2.0.0',
+    'alias' => 
+    array (
+      '@yii2mod/alert' => $vendorDir . '/yii2mod/yii2-sweet-alert',
+    ),
+  ),
 );
